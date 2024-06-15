@@ -1,10 +1,10 @@
 ﻿using System;
 namespace ContainerVervoer
 {
-	// This is the first row in every ship
-
 	public class Row
 	{
+		List<Stack> RowOfStacks = new List<Stack>();
+
 		public Row()
 		{
 		}
