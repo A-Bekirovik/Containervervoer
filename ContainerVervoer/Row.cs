@@ -1,13 +1,29 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+
 namespace ContainerVervoer
 {
 	public class Row
 	{
-		List<Stack> RowOfStacks = new List<Stack>();
+        private List<Stack> RowofStacks = new List<Stack>();
+        public ReadOnlyCollection<Stack> StackReadable
+        {
+            get { return RowofStacks.AsReadOnly(); }
+        }
 
-		public Row()
+        public int Width { get; private set; }
+        public RowSide Side { get; private set; }
+        public int MaxHeight { get; private set; }
+
+        public Row()
 		{
 		}
+
+        public List<Stack> ShowAllContainers(List<Stack> stacklist) 
+	    {
+
+            return stacklist;
+	    }
 	}
 }
 

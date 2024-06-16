@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
+using ContainerVervoer.Error;
+
 namespace ContainerVervoer
 {
 	public class Ship
@@ -45,6 +48,86 @@ namespace ContainerVervoer
                 }
                 return totalWeight;
             }
+        }
+
+        public void Run()
+        {
+            int totalWeightFirstRow = width * 150;
+            int totalWeightCoolables = 0;
+
+            foreach (Container container in Containers)
+            {
+                if (container.Type == ContainerType.Coolable || container.Type == ContainerType.CoolableValuable)
+                {
+                    totalWeightCoolables += container.Weight;
+                }
+            }
+
+            if (totalWeightFirstRow < totalWeightCoolables)
+            {
+                throw new ShipError("Too many coolables!!!!");
+            }
+
+            if (TotalWeight > maxWeight)
+            {
+                throw new ShipError("Load is too heavy");
+            }
+
+            if (TotalWeight < minWeight)
+            {
+                throw new ContainerError("Containers are too light");
+            }
+
+            if (WeightDifferencePercentage > 20)
+            {
+                throw new ShipError("Ship is capsizing");
+            }
+
+            if (DistributeContainers())
+            {
+                StartVisualizer();
+            }
+        }
+
+        public string StartVisualizer()
+        {
+            string stack = "";
+            string weight = "";
+            for (int z = 0; z < firstRow.Count; z++)
+            {
+                if (z > 0)
+                {
+                    stack += '/';
+                    weight += '/';
+                }
+
+                for (int x = 0; x < firstRow[z].Row.Count; x++)
+                {
+                    if (x > 0)
+                    {
+                        stack += ",";
+                        weight += ",";
+                    }
+
+                    if (firstRow[z].stackList[x].containers.Count > 0)
+                    {
+                        for (int y = 0; y < firstRow[z].stackList[x].containers.Count; y++)
+                        {
+                            Container container = firstRow[z].stackList[x].containers[y];
+
+                            stack += Convert.ToString((int)container.ContainerType);
+                            weight += Convert.ToString(container.Weight);
+                            if (y < (firstRow[z].stackList[x].containers.Count - 1))
+                            {
+                                weight += "-";
+                            }
+                        }
+                    }
+                }
+            }
+
+            Process.Start($"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + Length + "&width=" + Width + "&stacks=" + stack + "&weights=" + weight + "");
+            return $"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + Length + "&width=" + Width + "&stacks=" + stack + "&weights=" + weight + "";
         }
     }
 }

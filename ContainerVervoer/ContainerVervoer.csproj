@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Error\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Error\" />
+  </ItemGroup>
 </Project>
