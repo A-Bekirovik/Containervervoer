@@ -1,39 +1,42 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
+using System.Collections.Generic;
 using ContainerVervoer.Error;
 
 namespace ContainerVervoer
 {
-	public class Ship
-	{
+    public class Ship
+    {
         public readonly List<Container> Containers;
         public List<Container> SortedContainers;
         public readonly List<Row> firstRow = new List<Row>();
 
-
         public int width { get; set; }
-        public int length { get; set; } 
-	    public int maxWeight { get; set; }
-	    public int minWeight { get; set; }       
+        public int length { get; set; }
+        public int maxWeight { get; set; }
+        public int minWeight { get; set; }
 
         private int WeightLeft;
         private int WeightRight;
 
-        public Ship(int Length, int Width) // Length bepaal de hoeveelheid plekken op de X-as, Width bepaald op de Y-as
-		{
-            Width = width;
-            Length = length;
-            maxWeight = (length * width) * 150;
+        public Ship(int Length, int Width)
+        {
+            this.width = Width;
+            this.length = Length;
+            maxWeight = (Length * Width) * 150;
             minWeight = maxWeight / 2;
             Containers = new List<Container>();
             SortedContainers = new List<Container>();
+            CheckIfRowsAreEvenOrUneven();
         }
 
         private double WeightDifferencePercentage
         {
             get
             {
-                return ((WeightLeft / TotalWeight) * 100) - ((WeightRight / TotalWeight) * 100);
+                if (TotalWeight == 0) return 0;
+                return Math.Abs(((double)WeightLeft / TotalWeight * 100) - ((double)WeightRight / TotalWeight * 100));
             }
         }
 
@@ -41,12 +44,7 @@ namespace ContainerVervoer
         {
             get
             {
-                int totalWeight = 0;
-                foreach (Container container in Containers)
-                {
-                    totalWeight += container.Weight;
-                }
-                return totalWeight;
+                return Containers.Sum(container => container.Weight);
             }
         }
 
@@ -73,7 +71,7 @@ namespace ContainerVervoer
                 {
                     if (row.TryAddingContainer(container))
                     {
-                        if (WeightLeft < WeightRight)
+                        if (row.Side == RowSides.Left)
                         {
                             WeightLeft += container.Weight;
                         }
@@ -125,76 +123,67 @@ namespace ContainerVervoer
 
         private RowSides CalculateEvenRows(int i)
         {
-            RowSides side;
-            if (i < width / 2)
-            {
-                side = RowSides.Left;
-            }
-            else
-            {
-                side = RowSides.Right;
-            }
-
-            return side;
+            return i < width / 2 ? RowSides.Left : RowSides.Right;
         }
 
         private RowSides CalculateUnevenRows(int i)
         {
-            RowSides side;
-
             if (i < width / 2)
             {
-                side = RowSides.Left;
+                return RowSides.Left;
             }
             else if (i > width / 2)
             {
-                side = RowSides.Right;
+                return RowSides.Right;
             }
             else
             {
-                side = RowSides.Centre;
+                return RowSides.Centre;
             }
-
-            return side;
         }
-
 
         public void Run()
         {
-            int totalWeightFirstRow = width * 150;
-            int totalWeightCoolables = 0;
-
-            foreach (Container container in Containers)
+            try
             {
-                if (container.Type == ContainerType.Coolable || container.Type == ContainerType.CoolableValuable)
+                if (firstRow.Count == 0)
                 {
-                    totalWeightCoolables += container.Weight;
+                    CheckIfRowsAreEvenOrUneven();
+                }
+
+                int totalWeightFirstRow = width * 150;
+                int totalWeightCoolables = Containers
+                    .Where(container => container.Type == ContainerType.Coolable || container.Type == ContainerType.CoolableValuable)
+                    .Sum(container => container.Weight);
+
+                if (totalWeightFirstRow < totalWeightCoolables)
+                {
+                    throw new ShipError("Too many coolables!!!!");
+                }
+
+                if (TotalWeight > maxWeight)
+                {
+                    throw new ShipError("Load is too heavy");
+                }
+
+                if (TotalWeight < minWeight)
+                {
+                    throw new ContainerError("Containers are too light");
+                }
+
+                if (WeightDifferencePercentage > 20)
+                {
+                    throw new ShipError("Ship is capsizing");
+                }
+
+                if (DistributeContainers())
+                {
+                    StartVisualizer();
                 }
             }
-
-            if (totalWeightFirstRow < totalWeightCoolables)
+            catch (Exception ex)
             {
-                throw new ShipError("Too many coolables!!!!");
-            }
-
-            if (TotalWeight > maxWeight)
-            {
-                throw new ShipError("Load is too heavy");
-            }
-
-            if (TotalWeight < minWeight)
-            {
-                throw new ContainerError("Containers are too light");
-            }
-
-            if (WeightDifferencePercentage > 20)
-            {
-                throw new ShipError("Ship is capsizing");
-            }
-
-            if (DistributeContainers())
-            {
-                StartVisualizer();
+                Console.WriteLine($"An error occurred: {ex.Message}");
             }
         }
 

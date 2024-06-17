@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace ContainerVervoer
 {
     public class Stack
     {
-
         public int Position { get; set; }
         public bool IsFront { get; private set; }
         public bool IsBack { get; private set; }
@@ -13,10 +15,10 @@ namespace ContainerVervoer
         public List<Container> containers = new List<Container>(); // Bepaalt welke container op welke plaats staat
         private readonly int FirstMaxWeight = (int)ContainerWeight.Max * 4; // Max weight that the first container can have on top
 
-        public Stack(int position, bool isfront, bool isBack)
+        public Stack(int position, bool isFront, bool isBack)
         {
             Position = position;
-            IsFront = isfront;
+            IsFront = isFront;
             IsBack = isBack;
         }
 
@@ -36,18 +38,13 @@ namespace ContainerVervoer
         {
             get
             {
-                int totalWeight = 0;
-                foreach (var container in containers)
-                {
-                    totalWeight += container.Weight;
-                }
-                return totalWeight;
+                return containers.Sum(container => container.Weight);
             }
         }
 
         public bool TryAddingContainer(Container container)
         {
-            if (container.Type == ContainerType.Coolable && Position > 0 || Reserved)
+            if ((container.Type == ContainerType.Coolable && Position > 0) || Reserved)
             {
                 return false;
             }
@@ -70,7 +67,7 @@ namespace ContainerVervoer
                     containers.Insert(0, container);
                 }
 
-                if (ContainersWeight + container.Weight >= MaxWeight)
+                if (ContainersWeight >= MaxWeight)
                 {
                     StackIsFull = true;
                 }
@@ -82,4 +79,3 @@ namespace ContainerVervoer
         }
     }
 }
-
