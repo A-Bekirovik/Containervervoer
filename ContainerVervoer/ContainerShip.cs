@@ -21,7 +21,7 @@ namespace ContainerVervoer
         {
             ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(6, 3));
 
-            FormContainers.Add(new Container(30, false, false));
+            FormContainers.Add(new Container(30, true, true));
             FormContainers.Add(new Container(30, false, false));
             FormContainers.Add(new Container(30, false, false));
             FormContainers.Add(new Container(30, false, false));
