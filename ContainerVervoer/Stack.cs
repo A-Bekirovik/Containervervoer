@@ -38,7 +38,7 @@ namespace ContainerVervoer
         {
             get
             {
-                return containers.Sum(container => container.Weight);
+                return containers.Sum(container => container.Weight); // Voor elke container in containers, summarize Weight
             }
         }
 
