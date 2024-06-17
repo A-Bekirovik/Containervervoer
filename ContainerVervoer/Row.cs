@@ -5,15 +5,18 @@ namespace ContainerVervoer
 {
 	public class Row
 	{
-        private List<Stack> RowofStacks = new List<Stack>();
+        public List<Stack> RowofStacks = new List<Stack>();
 
         public int Width { get; private set; }
         public RowSides Side { get; private set; }
         public int MaxHeight { get; private set; }
 
-        public Row()
-		{
-		}
+        public Row(int width, RowSides side)
+        {
+            Width = width;
+            RowofStacks = GetAllStackInRow();
+            Side = side;
+        }
 
         public bool TryAddingContainer(Container container)
         {

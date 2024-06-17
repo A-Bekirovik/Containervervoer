@@ -10,7 +10,7 @@ namespace ContainerVervoer
         public bool Reserved { get; set; }
         public bool StackIsFull { get; set; }
 
-        List<Container> containers = new List<Container>(); // Bepaalt welke container op welke plaats staat
+        public List<Container> containers = new List<Container>(); // Bepaalt welke container op welke plaats staat
         private readonly int FirstMaxWeight = (int)ContainerWeight.Max * 4; // Max weight that the first container can have on top
 
         public Stack(int position, bool isfront, bool isBack)

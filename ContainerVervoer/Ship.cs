@@ -50,6 +50,115 @@ namespace ContainerVervoer
             }
         }
 
+        public bool DistributeContainers()
+        {
+            SortedContainers = Containers.OrderByDescending(o => o.Type).ThenBy(o => o.Weight).ToList();
+
+            foreach (Container container in SortedContainers)
+            {
+                if (!AddContainerLeftOrRight(container))
+                {
+                    AddContainerCenter(container);
+                }
+            }
+
+            return true;
+        }
+
+        private bool AddContainerLeftOrRight(Container container)
+        {
+            foreach (Row row in firstRow)
+            {
+                if ((WeightLeft < WeightRight && row.Side == RowSides.Left) || (WeightLeft >= WeightRight && row.Side == RowSides.Right))
+                {
+                    if (row.TryAddingContainer(container))
+                    {
+                        if (WeightLeft < WeightRight)
+                        {
+                            WeightLeft += container.Weight;
+                        }
+                        else
+                        {
+                            WeightRight += container.Weight;
+                        }
+
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private void AddContainerCenter(Container container)
+        {
+            foreach (Row row in firstRow)
+            {
+                if (row.Side == RowSides.Centre)
+                {
+                    if (row.TryAddingContainer(container))
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void CheckIfRowsAreEvenOrUneven()
+        {
+            for (int i = 0; i < width; i++)
+            {
+                RowSides side;
+
+                if (width % 2 == 0)
+                {
+                    side = CalculateEvenRows(i);
+                }
+                else
+                {
+                    side = CalculateUnevenRows(i);
+                }
+
+                firstRow.Add(new Row(length, side));
+            }
+        }
+
+        private RowSides CalculateEvenRows(int i)
+        {
+            RowSides side;
+            if (i < width / 2)
+            {
+                side = RowSides.Left;
+            }
+            else
+            {
+                side = RowSides.Right;
+            }
+
+            return side;
+        }
+
+        private RowSides CalculateUnevenRows(int i)
+        {
+            RowSides side;
+
+            if (i < width / 2)
+            {
+                side = RowSides.Left;
+            }
+            else if (i > width / 2)
+            {
+                side = RowSides.Right;
+            }
+            else
+            {
+                side = RowSides.Centre;
+            }
+
+            return side;
+        }
+
+
         public void Run()
         {
             int totalWeightFirstRow = width * 150;
@@ -101,7 +210,7 @@ namespace ContainerVervoer
                     weight += '/';
                 }
 
-                for (int x = 0; x < firstRow[z].Row.Count; x++)
+                for (int x = 0; x < firstRow[z].RowofStacks.Count; x++)
                 {
                     if (x > 0)
                     {
@@ -109,15 +218,15 @@ namespace ContainerVervoer
                         weight += ",";
                     }
 
-                    if (firstRow[z].stackList[x].containers.Count > 0)
+                    if (firstRow[z].RowofStacks[x].containers.Count > 0)
                     {
-                        for (int y = 0; y < firstRow[z].stackList[x].containers.Count; y++)
+                        for (int y = 0; y < firstRow[z].RowofStacks[x].containers.Count; y++)
                         {
-                            Container container = firstRow[z].stackList[x].containers[y];
+                            Container container = firstRow[z].RowofStacks[x].containers[y];
 
-                            stack += Convert.ToString((int)container.ContainerType);
+                            stack += Convert.ToString((int)container.Type);
                             weight += Convert.ToString(container.Weight);
-                            if (y < (firstRow[z].stackList[x].containers.Count - 1))
+                            if (y < (firstRow[z].RowofStacks[x].containers.Count - 1))
                             {
                                 weight += "-";
                             }
@@ -126,8 +235,8 @@ namespace ContainerVervoer
                 }
             }
 
-            Process.Start($"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + Length + "&width=" + Width + "&stacks=" + stack + "&weights=" + weight + "");
-            return $"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + Length + "&width=" + Width + "&stacks=" + stack + "&weights=" + weight + "";
+            Process.Start($"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + length + "&width=" + width + "&stacks=" + stack + "&weights=" + weight + "");
+            return $"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + length + "&width=" + width + "&stacks=" + stack + "&weights=" + weight + "";
         }
     }
 }
