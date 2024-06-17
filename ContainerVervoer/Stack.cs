@@ -1,8 +1,8 @@
 ﻿using System;
 namespace ContainerVervoer
 {
-	public class Stack
-	{
+    public class Stack
+    {
 
         public int Position { get; set; }
         public bool IsFront { get; private set; }
@@ -43,6 +43,42 @@ namespace ContainerVervoer
                 }
                 return totalWeight;
             }
+        }
+
+        public bool TryAddingContainer(Container container)
+        {
+            if (container.Type == ContainerType.Coolable && Position > 0 || Reserved)
+            {
+                return false;
+            }
+
+            if (ContainersWeight + container.Weight <= MaxWeight)
+            {
+                if (container.Type == ContainerType.Valuable || container.Type == ContainerType.CoolableValuable)
+                {
+                    if (containers.Count == 0 || containers.LastOrDefault().Type != ContainerType.Valuable)
+                    {
+                        containers.Add(container);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    containers.Insert(0, container);
+                }
+
+                if (ContainersWeight + container.Weight >= MaxWeight)
+                {
+                    StackIsFull = true;
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

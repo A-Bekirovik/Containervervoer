@@ -18,12 +18,6 @@ namespace ContainerVervoer
         public Row()
 		{
 		}
-
-        public List<Stack> ShowAllContainers(List<Stack> stacklist) 
-	    {
-
-            return stacklist;
-	    }
 	}
 }
 
