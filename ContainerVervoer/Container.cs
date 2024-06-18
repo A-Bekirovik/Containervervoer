@@ -52,7 +52,7 @@ namespace ContainerVervoer
 
         public string ReturnContainerInfoString()
         {
-            return $"Weight: {Weight} Valuable: {isValuable} Coolable: {isCoolable}"; ;
+            return $"Weight: {Weight}, Valuable: {isValuable}, Coolable: {isCoolable}";
         }
     }
 }
