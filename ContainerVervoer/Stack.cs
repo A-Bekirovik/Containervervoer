@@ -11,8 +11,8 @@ namespace ContainerVervoer
         public bool Reserved { get; set; }
         public bool StackIsFull { get; set; }
 
-        public List<Container> containers = new List<Container>(); // Bepaalt welke container op welke plaats staat
-        private readonly int FirstMaxWeight = (int)ContainerWeight.Max * 4; // Max weight that the first container can have on top
+        public List<Container> containers = new List<Container>();
+        private readonly int FirstMaxWeight = (int)ContainerWeight.Max * 4;
 
         public Stack(int position, bool isFront)
         {
@@ -36,7 +36,7 @@ namespace ContainerVervoer
         {
             get
             {
-                return containers.Sum(container => container.Weight); // Voor elke container in containers, summarize Weight
+                return containers.Sum(container => container.Weight);
             }
         }
 
@@ -49,7 +49,18 @@ namespace ContainerVervoer
 
             if (ContainersWeight + container.Weight <= MaxWeight)
             {
-                if (container.Type == ContainerType.Valuable || container.Type == ContainerType.CoolableValuable)
+                if (container.Type == ContainerType.CoolableValuable)
+                {
+                    if (containers.Count == 0 || containers.LastOrDefault().Type != ContainerType.CoolableValuable)
+                    {
+                        containers.Add(container);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else if (container.Type == ContainerType.Valuable)
                 {
                     if (containers.Count == 0 || containers.LastOrDefault().Type != ContainerType.Valuable)
                     {
@@ -62,7 +73,14 @@ namespace ContainerVervoer
                 }
                 else
                 {
-                    containers.Insert(0, container);
+                    if (containers.Count == 0 || containers.LastOrDefault().Type != ContainerType.CoolableValuable)
+                    {
+                        containers.Insert(0, container);
+                    }
+                    else
+                    {
+                        containers.Insert(containers.Count - 1, container);
+                    }
                 }
 
                 if (ContainersWeight >= MaxWeight)

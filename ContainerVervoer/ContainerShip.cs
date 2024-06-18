@@ -10,7 +10,7 @@ namespace ContainerVervoer
 
         public void Run()
         {
-            scenario.Scenario1();
+            scenario.Scenario3();
         }
     }
 }

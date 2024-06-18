@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace ContainerVervoer
 {
-	public class Row
-	{
+    public class Row
+    {
         public List<Stack> RowofStacks = new List<Stack>();
-
         public int Width { get; private set; }
         public RowSides Side { get; private set; }
         public int MaxHeight { get; private set; }
+        public bool HasCoolableValuableContainer { get; private set; }
 
         public Row(int width, RowSides side)
         {
@@ -20,6 +20,15 @@ namespace ContainerVervoer
 
         public bool TryAddingContainer(Container container)
         {
+            if (container.Type == ContainerType.CoolableValuable)
+            {
+                if (HasCoolableValuableContainer)
+                {
+                    return false;
+                }
+                HasCoolableValuableContainer = true;
+            }
+
             for (int i = 0; i < RowofStacks.Count; i++)
             {
                 Stack stack = RowofStacks[i];
@@ -37,7 +46,7 @@ namespace ContainerVervoer
             return false;
         }
 
-        private bool CheckIfContainerNeedsReservedSpace(Container container, Stack stack, int index) // For V
+        private bool CheckIfContainerNeedsReservedSpace(Container container, Stack stack, int index)
         {
             if (container.Type == ContainerType.Valuable || container.Type == ContainerType.CoolableValuable)
             {
@@ -79,4 +88,3 @@ namespace ContainerVervoer
         }
     }
 }
-
