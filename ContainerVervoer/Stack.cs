@@ -51,18 +51,15 @@ namespace ContainerVervoer
             {
                 if (container.Type == ContainerType.CoolableValuable)
                 {
-                    if (containers.Count == 0 || containers.LastOrDefault().Type != ContainerType.CoolableValuable)
-                    {
-                        containers.Add(container);
-                    }
-                    else
+                    if (containers.Any(c => c.Type == ContainerType.CoolableValuable))
                     {
                         return false;
                     }
+                    containers.Add(container);
                 }
                 else if (container.Type == ContainerType.Valuable)
                 {
-                    if (containers.Count == 0 || containers.LastOrDefault().Type != ContainerType.Valuable)
+                    if (containers.Count == 0 || (containers.Count > 0 && containers.All(c => c.Type != ContainerType.CoolableValuable)))
                     {
                         containers.Add(container);
                     }
@@ -73,13 +70,13 @@ namespace ContainerVervoer
                 }
                 else
                 {
-                    if (containers.Count == 0 || containers.LastOrDefault().Type != ContainerType.CoolableValuable)
+                    if (containers.Any(c => c.Type == ContainerType.CoolableValuable))
                     {
-                        containers.Insert(0, container);
+                        containers.Insert(containers.Count - 1, container);
                     }
                     else
                     {
-                        containers.Insert(containers.Count - 1, container);
+                        containers.Insert(0, container);
                     }
                 }
 
