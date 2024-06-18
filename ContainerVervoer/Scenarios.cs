@@ -7,7 +7,6 @@ namespace ContainerVervoer
 
         public Scenarios() 
 	    {
-
         }
 
         public void Scenario1()
