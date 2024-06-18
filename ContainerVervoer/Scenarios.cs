@@ -158,55 +158,96 @@ namespace ContainerVervoer
         {
             ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(6, 3));
 
+            //CV
             ContainersOnDock.Add(new Container(30, true, true));
+            ContainersOnDock.Add(new Container(30, true, true));
+            ContainersOnDock.Add(new Container(30, true, true));
+
+            //C
             ContainersOnDock.Add(new Container(30, false, true));
             ContainersOnDock.Add(new Container(30, false, true));
             ContainersOnDock.Add(new Container(30, false, true));
-            ContainersOnDock.Add(new Container(30, false, true));
+
+            //V
+            ContainersOnDock.Add(new Container(30, true, false));
+            ContainersOnDock.Add(new Container(30, true, false));
+            ContainersOnDock.Add(new Container(30, true, false));
+            ContainersOnDock.Add(new Container(30, true, false));
+            ContainersOnDock.Add(new Container(30, true, false));
+            ContainersOnDock.Add(new Container(30, true, false));
+
+            //N
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
             ContainersOnDock.Add(new Container(30, false, false));
             ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
             ContainersOnDock.Add(new Container(30, false, false));
             ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
             ContainersOnDock.Add(new Container(30, false, false));
             ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
             ContainersOnDock.Add(new Container(30, false, false));
             ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));                                                 
+              
 
             foreach (Container container in ContainersOnDock)
             {
@@ -216,67 +257,106 @@ namespace ContainerVervoer
             containerPlacer.Ship.Run();
         }
 
+        //Laten zien dat de valuable van plaats veranderd, omdat hij altijd een plek voor of achter vrij moet hebben
         public void Scenario3()
         {
-            ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(5, 3));
+            ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(6, 3));
 
+            //CV
             ContainersOnDock.Add(new Container(30, true, true));
+            ContainersOnDock.Add(new Container(30, true, true));
+            ContainersOnDock.Add(new Container(30, true, true));
+
+            //C
             ContainersOnDock.Add(new Container(30, false, true));
             ContainersOnDock.Add(new Container(30, false, true));
             ContainersOnDock.Add(new Container(30, false, true));
-            ContainersOnDock.Add(new Container(30, false, true));
-            ContainersOnDock.Add(new Container(30, false, true));
-            ContainersOnDock.Add(new Container(30, false, true));
-            ContainersOnDock.Add(new Container(30, false, true));
+
+            //V
             ContainersOnDock.Add(new Container(30, true, false));
             ContainersOnDock.Add(new Container(30, true, false));
             ContainersOnDock.Add(new Container(30, true, false));
             ContainersOnDock.Add(new Container(30, true, false));
             ContainersOnDock.Add(new Container(30, true, false));
             ContainersOnDock.Add(new Container(30, true, false));
+            ContainersOnDock.Add(new Container(30, true, false));            
+
+            //N
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
             ContainersOnDock.Add(new Container(30, false, false));
             ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
             ContainersOnDock.Add(new Container(30, false, false));
             ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));              
+            ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
             ContainersOnDock.Add(new Container(30, false, false));
             ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
             ContainersOnDock.Add(new Container(30, false, false));
             ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
             ContainersOnDock.Add(new Container(30, false, false));
+            ContainersOnDock.Add(new Container(30, false, false));  
+            ContainersOnDock.Add(new Container(30, false, false));  
             ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
+                                                                           
+              
 
             foreach (Container container in ContainersOnDock)
             {
