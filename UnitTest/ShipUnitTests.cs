@@ -34,4 +34,25 @@ public class ShipUnitTests
 
         CollectionAssert.AreEqual(expectedOrder, ship.SortedContainers.Select(c => c.Type).ToList());
     }
+
+    [TestMethod]
+    public void CheckBoebeh()
+    {
+        // Arrange
+        var ship = new Ship(2, 3);
+
+        for (int i = 0; i < 12; i++)    
+        {
+            ship.Containers.Add(new Container(30, false, false));                
+        }
+
+        // Act
+        bool result = ship.DistributeContainers();
+
+        // Assert
+        Assert.IsTrue(result);
+        Assert.AreEqual(13, ship.SortedContainers.Count);
+        Assert.IsTrue(ship.TotalWeight >= ship.minWeight);
+        Assert.IsTrue(ship.TotalWeight <= ship.maxWeight);
+    }
 }
