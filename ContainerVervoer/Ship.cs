@@ -40,7 +40,7 @@ namespace ContainerVervoer
             }
         }
 
-        private int TotalWeight
+        public int TotalWeight
         {
             get
             {
