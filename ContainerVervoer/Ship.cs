@@ -50,9 +50,9 @@ namespace ContainerVervoer
 
         public bool DistributeContainers()
         {
-            SortedContainers = Containers.OrderByDescending(o => o.Type).ThenBy(o => o.Weight).ToList();
+            SortedContainers = Containers.OrderByDescending(o => o.Type).ThenBy(o => o.Weight).ToList(); // Sorting List
 
-            foreach (Container container in SortedContainers)
+            foreach (Container container in SortedContainers) // Putting Containers on ship
             {
                 if (!AddContainerLeftOrRight(container))
                 {
@@ -67,17 +67,17 @@ namespace ContainerVervoer
         {
             foreach (Row row in firstRow)
             {
-                if ((WeightLeft < WeightRight && row.Side == RowSides.Left) || (WeightLeft >= WeightRight && row.Side == RowSides.Right))
+                if ((WeightLeft < WeightRight && row.Side == RowSides.Left) || (WeightLeft >= WeightRight && row.Side == RowSides.Right)) // Which side is heavier.
                 {
-                    if (row.TryAddingContainer(container))
+                    if (row.TryAddingContainer(container)) // Adds Container to that Side
                     {
                         if (row.Side == RowSides.Left)
                         {
-                            WeightLeft += container.Weight;
+                            WeightLeft += container.Weight; // Summarizes New Left side
                         }
                         else
                         {
-                            WeightRight += container.Weight;
+                            WeightRight += container.Weight; // Summarizes New Right side
                         }
 
                         return true;
@@ -158,22 +158,22 @@ namespace ContainerVervoer
 
                 if (totalWeightFirstRow < totalWeightCoolables)
                 {
-                    throw new ShipError("Too many coolables!!!!");
+                    throw new ShipError("Ship has too many coolable");
                 }
 
                 if (TotalWeight > maxWeight)
                 {
-                    throw new ShipError("Load is too heavy");
+                    throw new ShipError("Ship Too Heavy");
                 }
 
                 if (TotalWeight < minWeight)
                 {
-                    throw new ContainerError("Containers are too light");
+                    throw new ContainerError("Containers Too Light");
                 }
 
                 if (WeightDifferencePercentage > 20)
                 {
-                    throw new ShipError("Ship is capsizing");
+                    throw new ShipError("Ship is capzizing");
                 }
 
                 if (DistributeContainers())

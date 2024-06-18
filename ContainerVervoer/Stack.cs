@@ -8,18 +8,16 @@ namespace ContainerVervoer
     {
         public int Position { get; set; }
         public bool IsFront { get; private set; }
-        public bool IsBack { get; private set; }
         public bool Reserved { get; set; }
         public bool StackIsFull { get; set; }
 
         public List<Container> containers = new List<Container>(); // Bepaalt welke container op welke plaats staat
         private readonly int FirstMaxWeight = (int)ContainerWeight.Max * 4; // Max weight that the first container can have on top
 
-        public Stack(int position, bool isFront, bool isBack)
+        public Stack(int position, bool isFront)
         {
             Position = position;
             IsFront = isFront;
-            IsBack = isBack;
         }
 
         public int MaxWeight

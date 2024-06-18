@@ -37,11 +37,11 @@ namespace ContainerVervoer
             return false;
         }
 
-        private bool CheckIfContainerNeedsReservedSpace(Container container, Stack stack, int index)
+        private bool CheckIfContainerNeedsReservedSpace(Container container, Stack stack, int index) // For V
         {
             if (container.Type == ContainerType.Valuable || container.Type == ContainerType.CoolableValuable)
             {
-                if (stack.IsBack || stack.IsFront)
+                if (stack.IsFront)
                 {
                     return true;
                 }
@@ -66,19 +66,13 @@ namespace ContainerVervoer
             for (int i = 0; i < Width; i++)
             {
                 bool isFront = false;
-                bool isBack = false;
 
                 if (i == 0)
                 {
                     isFront = true;
                 }
 
-                if ((i + 1) == Width)
-                {
-                    isBack = true;
-                }
-
-                stacks.Add(new Stack(i, isFront, isBack));
+                stacks.Add(new Stack(i, isFront));
             }
 
             return stacks;

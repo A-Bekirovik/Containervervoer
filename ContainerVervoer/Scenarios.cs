@@ -14,6 +14,7 @@ namespace ContainerVervoer
             ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(3, 3));
 
             ContainersOnDock.Add(new Container(10, true, true));
+            ContainersOnDock.Add(new Container(10, true, true));
             ContainersOnDock.Add(new Container(10, false, true));
             ContainersOnDock.Add(new Container(10, false, true));
             ContainersOnDock.Add(new Container(10, false, true));
@@ -165,7 +166,7 @@ namespace ContainerVervoer
 
         public void Scenario3()
         {
-            ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(6, 3));
+            ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(5, 3));
 
             ContainersOnDock.Add(new Container(30, false, true));
             ContainersOnDock.Add(new Container(30, false, true));
@@ -236,7 +237,7 @@ namespace ContainerVervoer
 
         public void Scenario4()
         {
-            ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(3, 3));
+            ContainerPlacer containerPlacer = new ContainerPlacer(new Ship(2, 3));
 
             ContainersOnDock.Add(new Container(30, false, true));
             ContainersOnDock.Add(new Container(30, false, true));
@@ -258,18 +259,7 @@ namespace ContainerVervoer
             ContainersOnDock.Add(new Container(30, false, false));
             ContainersOnDock.Add(new Container(30, false, false));
             ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
-            ContainersOnDock.Add(new Container(30, false, false));
+
 
 
             foreach (Container container in ContainersOnDock)
