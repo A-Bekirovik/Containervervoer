@@ -224,7 +224,8 @@ namespace ContainerVervoer
                 }
             }
 
-            Process.Start($"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + length + "&width=" + width + "&stacks=" + stack + "&weights=" + weight + "");
+            Console.WriteLine($"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + length + "&width=" + width + "&stacks=" + stack + "&weights=" + weight + "");
+            Console.WriteLine();            
             return $"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + length + "&width=" + width + "&stacks=" + stack + "&weights=" + weight + "";
         }
     }
