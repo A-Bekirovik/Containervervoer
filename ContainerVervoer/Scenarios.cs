@@ -93,6 +93,21 @@ namespace ContainerVervoer
             ContainersOnDock.Add(new Container(10, false, false));
             ContainersOnDock.Add(new Container(10, false, false));
             ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
+            ContainersOnDock.Add(new Container(10, false, false));
 
             foreach (Container container in ContainersOnDock)
             {

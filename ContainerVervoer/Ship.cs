@@ -54,9 +54,9 @@ namespace ContainerVervoer
 
             foreach (Container container in SortedContainers) // Putting Containers on ship
             {
-                if (!AddContainerLeftOrRight(container))
+                if (!AddContainerCenter(container))
                 {
-                    AddContainerCenter(container);
+                    AddContainerLeftOrRight(container);
                 }
             }
 
@@ -88,7 +88,7 @@ namespace ContainerVervoer
             return false;
         }
 
-        private void AddContainerCenter(Container container)
+        private bool AddContainerCenter(Container container)
         {
             foreach (Row row in firstRow)
             {
@@ -96,10 +96,11 @@ namespace ContainerVervoer
                 {
                     if (row.TryAddingContainer(container))
                     {
-                        return;
+                        return true;
                     }
                 }
             }
+            return false;
         }
 
         private void CheckIfRowsAreEvenOrUneven()
