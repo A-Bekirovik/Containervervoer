@@ -59,14 +59,11 @@ namespace ContainerVervoer
                 }
                 else if (container.Type == ContainerType.Valuable)
                 {
-                    if (containers.Count == 0 || (containers.Count > 0 && containers.All(c => c.Type != ContainerType.CoolableValuable)))
-                    {
-                        containers.Add(container);
-                    }
-                    else
+                    if (containers.Any(c => c.Type == ContainerType.Valuable || c.Type == ContainerType.CoolableValuable))
                     {
                         return false;
                     }
+                    containers.Add(container);
                 }
                 else
                 {
