@@ -49,17 +49,17 @@ namespace ContainerVervoer
 
             if (ContainersWeight + container.Weight <= MaxWeight)
             {
-                if (container.Type == ContainerType.CoolableValuable)
+                if (container.Type == ContainerType.CoolableValuable) // Checks for CV
                 {
-                    if (containers.Any(c => c.Type == ContainerType.CoolableValuable))
+                    if (containers.Any(c => c.Type == ContainerType.CoolableValuable)) // Als de Stack een CV heeft. is het false
                     {
                         return false;
                     }
                     containers.Add(container);
                 }
-                else if (container.Type == ContainerType.Valuable)
+                else if (container.Type == ContainerType.Valuable) // Checks for V
                 {
-                    if (containers.Any(c => c.Type == ContainerType.Valuable || c.Type == ContainerType.CoolableValuable))
+                    if (containers.Any(c => c.Type == ContainerType.Valuable || c.Type == ContainerType.CoolableValuable)) // Checkt of er een CV of V in zit, als wel. geeft false
                     {
                         return false;
                     }

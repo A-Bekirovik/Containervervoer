@@ -50,57 +50,20 @@ namespace ContainerVervoer
 
         public bool DistributeContainers()
         {
-            SortedContainers = Containers.OrderByDescending(o => o.Type).ThenBy(o => o.Weight).ToList(); // Sorting List
+            SortedContainers = Containers.OrderByDescending(o => o.Type).ThenBy(o => o.Weight).ToList();
 
-            foreach (Container container in SortedContainers) // Putting Containers on ship
+            int rowIndex = 0;
+            while (SortedContainers.Count > 0)
             {
-                if (!AddContainerCenter(container))
+                Row row = firstRow[rowIndex % firstRow.Count];
+                if (row.TryAddingContainer(SortedContainers[0]))
                 {
-                    AddContainerLeftOrRight(container);
+                    SortedContainers.RemoveAt(0);
                 }
+                rowIndex++;
             }
 
             return true;
-        }
-
-        private bool AddContainerLeftOrRight(Container container)
-        {
-            foreach (Row row in firstRow)
-            {
-                if ((WeightLeft < WeightRight && row.Side == RowSides.Left) || (WeightLeft >= WeightRight && row.Side == RowSides.Right)) // Which side is heavier.
-                {
-                    if (row.TryAddingContainer(container)) // Adds Container to that Side
-                    {
-                        if (row.Side == RowSides.Left)
-                        {
-                            WeightLeft += container.Weight; // Summarizes New Left side
-                        }
-                        else
-                        {
-                            WeightRight += container.Weight; // Summarizes New Right side
-                        }
-
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        private bool AddContainerCenter(Container container)
-        {
-            foreach (Row row in firstRow)
-            {
-                if (row.Side == RowSides.Centre)
-                {
-                    if (row.TryAddingContainer(container))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
         }
 
         private void CheckIfRowsAreEvenOrUneven()
@@ -186,6 +149,8 @@ namespace ContainerVervoer
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
             }
+
+
         }
 
         public string StartVisualizer()
@@ -226,7 +191,7 @@ namespace ContainerVervoer
             }
 
             Console.WriteLine($"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + length + "&width=" + width + "&stacks=" + stack + "&weights=" + weight + "");
-            Console.WriteLine();            
+            Console.WriteLine();
             return $"https://i872272.luna.fhict.nl/ContainerVisualizer/index.html?length=" + length + "&width=" + width + "&stacks=" + stack + "&weights=" + weight + "";
         }
     }

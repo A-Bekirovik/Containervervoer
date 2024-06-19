@@ -60,19 +60,33 @@ public class ShipUnitTests
 
     [TestMethod]
     [ExpectedException(typeof(ShipError))]
-    public void TestShipTooHeavy()
+    public void TestShipTooLight()
     {
         // Arrange
         var ship = new Ship(2, 3);
-        ContainerStarter containerStarter = new ContainerStarter(ship);
-
-        // Add too many containers to the ship
-        for (int i = 0; i < 55; i++)
+        
+        for (int i = 0; i < 1; i++)
         {
-            ship.Containers.Add(new Container(30, false, false)); // 15 containers of 30 tons each
+            ship.Containers.Add(new Container(5, false, false));
         }
 
         // Act and Assert
         Assert.ThrowsException<ShipError>(() => ship.Run());
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ShipError))]
+    public void TestShipTooHeavy()
+    {
+        // Arrange
+        var ship = new Ship(3, 3);
+
+        // Add too many containers to the ship
+        for (int i = 0; i < 55; i++)
+        {
+            ship.Containers.Add(new Container(30, false, false));
+        }
+
+        ship.Run();
     }
 }
