@@ -3,7 +3,7 @@
 namespace UnitTest
 {
     [TestClass]
-    public class StackTests
+    public class RowUnitTests
     {
         [TestMethod]
         public void FirstRowUnitTests()

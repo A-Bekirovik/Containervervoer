@@ -127,7 +127,7 @@ namespace ContainerVervoer
 
                 if (TotalWeight > maxWeight)
                 {
-                    throw new ShipError("Ship Too Heavy");
+                    throw new ContainerError("Containers Too Heavy");
                 }
 
                 if (TotalWeight < minWeight)

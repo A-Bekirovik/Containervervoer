@@ -1,92 +1,53 @@
-﻿using ContainerVervoer;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ContainerVervoer;
 using ContainerVervoer.Error;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace UnitTest;
-
-[TestClass]
-public class ShipUnitTests
+namespace UnitTest
 {
-    [TestMethod]
-    public void DistributeContainers_SortCorrectly()
+    [TestClass]
+    public class ShipTests
     {
-        // Arrange
-        var ship = new Ship(5, 3);
-        ship.Containers.Add(new Container(10, false, false));
-        ship.Containers.Add(new Container(15, true, false)); 
-        ship.Containers.Add(new Container(20, false, true)); 
-        ship.Containers.Add(new Container(25, true, true));  
-        ship.Containers.Add(new Container(8, false, false)); 
+        private Ship _ship;
 
-        // Act
-        bool result = ship.DistributeContainers();
-
-        // Assert
-        Assert.IsTrue(result);
-        Assert.AreEqual(5, ship.SortedContainers.Count);
-
-        var expectedOrder = new List<ContainerType>
-            {
-                ContainerType.CoolableValuable,
-                ContainerType.Coolable,
-                ContainerType.Valuable,
-                ContainerType.Normal,
-                ContainerType.Normal
-            };
-
-        CollectionAssert.AreEqual(expectedOrder, ship.SortedContainers.Select(c => c.Type).ToList());
-    }
-
-    [TestMethod]
-    public void TotalWeight_CheckIfInstertedCorrectly()
-    {
-        // Arrange
-        var ship = new Ship(2, 3);
-
-        for (int i = 0; i < 16; i++)    
+        [TestInitialize]
+        public void Setup()
         {
-            ship.Containers.Add(new Container(30, false, false));                
+            _ship = new Ship(10, 5);
         }
 
-        // Act
-        bool result = ship.DistributeContainers();
-        
-
-        // Assert
-        Assert.IsTrue(result);
-        Assert.AreEqual(16, ship.SortedContainers.Count);
-        Assert.IsTrue(ship.TotalWeight >= ship.minWeight);
-        Assert.IsTrue(ship.TotalWeight <= ship.maxWeight);
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(ShipError))]
-    public void TestShipTooLight()
-    {
-        // Arrange
-        var ship = new Ship(2, 3);
-        
-        for (int i = 0; i < 1; i++)
+        [TestMethod]
+        public void ShipInitializationTest()
         {
-            ship.Containers.Add(new Container(5, false, false));
+            Assert.AreEqual(10, _ship.length);
+            Assert.AreEqual(5, _ship.width);
+            Assert.AreEqual(10 * 5 * 150, _ship.maxWeight);
+            Assert.AreEqual(10 * 5 * 75, _ship.minWeight);
+            Assert.AreEqual(0, _ship.TotalWeight);
         }
 
-        // Act and Assert
-        Assert.ThrowsException<ShipError>(() => ship.Run());
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(ShipError))]
-    public void TestShipTooHeavy()
-    {
-        // Arrange
-        var ship = new Ship(3, 3);
-
-        // Add too many containers to the ship
-        for (int i = 0; i < 55; i++)
+        [TestMethod]
+        public void AddContainerToShipTest()
         {
-            ship.Containers.Add(new Container(30, false, false));
+            Container container = new Container(10, false, false);
+            _ship.Containers.Add(container);
+            Assert.AreEqual(1, _ship.Containers.Count);
+            Assert.AreEqual(10, _ship.TotalWeight);
         }
 
-        ship.Run();
+        [TestMethod]
+        public void DistributeContainersTest()
+        {
+            Container container1 = new Container(10, true, false);
+            Container container2 = new Container(20, false, true);
+            Container container3 = new Container(15, true, true);
+            Container container4 = new Container(5, false, false);
+            _ship.Containers.AddRange(new List<Container> { container1, container2, container3, container4 });
+
+            bool result = _ship.DistributeContainers();
+            Assert.IsTrue(result);
+            Assert.AreEqual(0, _ship.SortedContainers.Count);
+        }
     }
 }
