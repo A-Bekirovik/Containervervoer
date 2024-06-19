@@ -3,11 +3,11 @@ using System;
 
 namespace ContainerVervoer
 {
-    public class ContainerPlacer
+    public class ContainerStarter
     {
         public readonly Ship Ship;
 
-        public ContainerPlacer(Ship ship)
+        public ContainerStarter(Ship ship)
         {
             Ship = ship;
         }
