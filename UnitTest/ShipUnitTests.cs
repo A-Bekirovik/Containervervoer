@@ -54,12 +54,36 @@ namespace UnitTest
         [ExpectedException(typeof(ContainerError))]
         public void Run_TooLight()
         {
-            // Add containers with total weight less than the minimum weight
             Container container1 = new Container(5, false, false);
             Container container2 = new Container(5, false, false);
             _ship.Containers.AddRange(new List<Container> { container1, container2 });
 
-            // This should throw an exception
+            _ship.Run();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ContainerError))]
+        public void Run_TooHeavy()
+        {            
+            for (int i = 0; i < 50; i++)
+            {
+                Container container = new Container(30, false, false);
+                _ship.Containers.Add(container);
+            }
+
+            _ship.Run();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ShipError))]
+        public void Run_TooManyCoolables()
+        {           
+            for (int i = 0; i < 35; i++)
+            {
+                Container container = new Container(30, false, true);
+                _ship.Containers.Add(container);
+            }
+
             _ship.Run();
         }
     }
