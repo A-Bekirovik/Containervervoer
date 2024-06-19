@@ -1,4 +1,5 @@
 ﻿using ContainerVervoer;
+using ContainerVervoer.Error;
 
 namespace UnitTest;
 
@@ -55,5 +56,23 @@ public class ShipUnitTests
         Assert.AreEqual(16, ship.SortedContainers.Count);
         Assert.IsTrue(ship.TotalWeight >= ship.minWeight);
         Assert.IsTrue(ship.TotalWeight <= ship.maxWeight);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ShipError))]
+    public void TestShipTooHeavy()
+    {
+        // Arrange
+        var ship = new Ship(2, 3);
+        ContainerStarter containerStarter = new ContainerStarter(ship);
+
+        // Add too many containers to the ship
+        for (int i = 0; i < 55; i++)
+        {
+            ship.Containers.Add(new Container(30, false, false)); // 15 containers of 30 tons each
+        }
+
+        // Act and Assert
+        Assert.ThrowsException<ShipError>(() => ship.Run());
     }
 }
