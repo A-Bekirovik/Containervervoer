@@ -28,7 +28,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void AddContainerToShipTest()
+        public void AddContainerToShip()
         {
             Container container = new Container(10, false, false);
             _ship.Containers.Add(container);
@@ -37,7 +37,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void DistributeContainersTest()
+        public void DistributeContainers_SortedContainersNeedsToBeEmpty()
         {
             Container container1 = new Container(10, true, false);
             Container container2 = new Container(20, false, true);
@@ -48,6 +48,19 @@ namespace UnitTest
             bool result = _ship.DistributeContainers();
             Assert.IsTrue(result);
             Assert.AreEqual(0, _ship.SortedContainers.Count);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ContainerError))]
+        public void Run_TooLight()
+        {
+            // Add containers with total weight less than the minimum weight
+            Container container1 = new Container(5, false, false);
+            Container container2 = new Container(5, false, false);
+            _ship.Containers.AddRange(new List<Container> { container1, container2 });
+
+            // This should throw an exception
+            _ship.Run();
         }
     }
 }

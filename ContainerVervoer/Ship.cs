@@ -108,49 +108,40 @@ namespace ContainerVervoer
 
         public void Run()
         {
-            try
+            if (firstRow.Count == 0)
             {
-                if (firstRow.Count == 0)
-                {
-                    CheckIfRowsAreEvenOrUneven();
-                }
-
-                int totalWeightFirstRow = width * 150;
-                int totalWeightCoolables = Containers
-                    .Where(container => container.Type == ContainerType.Coolable || container.Type == ContainerType.CoolableValuable)
-                    .Sum(container => container.Weight);
-
-                if (totalWeightFirstRow < totalWeightCoolables)
-                {
-                    throw new ShipError("Ship has too many coolable");
-                }
-
-                if (TotalWeight > maxWeight)
-                {
-                    throw new ContainerError("Containers Too Heavy");
-                }
-
-                if (TotalWeight < minWeight)
-                {
-                    throw new ContainerError("Containers Too Light");
-                }
-
-                if (WeightDifferencePercentage > 20)
-                {
-                    throw new ShipError("Ship is capzizing");
-                }
-
-                if (DistributeContainers())
-                {
-                    StartVisualizer();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                CheckIfRowsAreEvenOrUneven();
             }
 
+            int totalWeightFirstRow = width * 150;
+            int totalWeightCoolables = Containers
+                .Where(container => container.Type == ContainerType.Coolable || container.Type == ContainerType.CoolableValuable)
+                .Sum(container => container.Weight);
 
+            if (totalWeightFirstRow < totalWeightCoolables)
+            {
+                throw new ShipError("Ship has too many coolable");
+            }
+
+            if (TotalWeight > maxWeight)
+            {
+                throw new ContainerError("Containers Too Heavy");
+            }
+
+            if (TotalWeight < minWeight)
+            {
+                throw new ContainerError("Containers Too Light");
+            }
+
+            if (WeightDifferencePercentage > 20)
+            {
+                throw new ShipError("Ship is capzizing");
+            }
+
+            if (DistributeContainers())
+            {
+                StartVisualizer();
+            }
         }
 
         public string StartVisualizer()
