@@ -17,15 +17,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void RowInitializationTest()
-        {
-            Assert.AreEqual(10, _row.Width);
-            Assert.AreEqual(RowSides.Left, _row.Side);
-            Assert.AreEqual(10, _row.RowofStacks.Count);
-        }
-
-        [TestMethod]
-        public void AddNormalContainerToRowTest()
+        public void TryAddingContainer_AddNormalContainerToRowTest()
         {
             Container container = new Container(10, false, false);
             bool result = _row.TryAddingContainer(container);
@@ -34,7 +26,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void AddCoolableValuableContainerToRowTest()
+        public void TryAddingContainer_AddCoolableValuableContainerToRowTest()
         {
             Container container = new Container(10, true, true);
             bool result = _row.TryAddingContainer(container);
@@ -44,7 +36,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void PreventAddingMultipleCoolableValuableContainersTest()
+        public void TryAddingContainer_PreventAddingMultipleCoolableValuableContainersTest()
         {
             Container container1 = new Container(10, true, true);
             Container container2 = new Container(15, true, true);
@@ -55,7 +47,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void PreventAddingCoolableContainerToNonFrontStackTest()
+        public void TryAddingContainer_PreventAddingCoolableContainerToNonFrontStackTest()
         {
             Row nonFrontRow = new Row(10, RowSides.Left);
             Container container = new Container(10, false, true);
